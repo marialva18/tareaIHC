@@ -5,10 +5,10 @@ import { botResponses } from '../../data/botResponses'
 import { ChatMessage } from './ChatMessage'
 import { QuickReplies } from './QuickReplies'
 
-export function FoodBot() {
+export function FoodBot({ user }) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([
-    { role: 'bot', text: '¡Hola! Soy FoodBot 🤖. Puedo recomendarte algo rápido, barato, saludable o en promo.' },
+    { role: 'bot', text: `¡Hola${user?.name ? ', ' + user.name.split(' ')[0] : ''}! Soy FoodBot 🤖. Puedo recomendarte algo rápido, barato, saludable o en promo.` },
   ])
 
   function choose(option) {

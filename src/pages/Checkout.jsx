@@ -7,9 +7,14 @@ import { Button } from '../components/ui/Button'
 import { validateCheckout } from '../utils/validations'
 import { createOrderId } from '../utils/orderHelpers'
 
-export function Checkout({ items, summary, setPage, clearCart, setCurrentOrder }) {
+export function Checkout({ items, summary, setPage, clearCart, setCurrentOrder, user }) {
   const [form, setForm] = useState({
-    name: 'María Alva', phone: '', deliveryType: '', campusPoint: '', reference: '', paymentMethod: '',
+    name: user?.name || '',
+    phone: user?.phone || '',
+    deliveryType: '',
+    campusPoint: user?.campusPoint || '',
+    reference: '',
+    paymentMethod: user?.payment || '',
   })
   const [errors, setErrors] = useState({})
 
@@ -32,7 +37,7 @@ export function Checkout({ items, summary, setPage, clearCart, setCurrentOrder }
       <div className="mb-6">
         <p className="text-sm font-bold uppercase tracking-[0.2em] text-orange-500">Checkout</p>
         <h1 className="text-4xl font-black text-slate-950 dark:text-white">Revisa y confirma tu pedido</h1>
-        <p className="mt-2 text-slate-500 dark:text-slate-400">El sistema valida los datos para prevenir errores antes de confirmar.</p>
+        <p className="mt-2 text-slate-500 dark:text-slate-400">El sistema usa tus datos de sesión simulada y valida la información para prevenir errores.</p>
       </div>
       {errors.cart && <div className="mb-4 rounded-3xl bg-red-50 p-4 font-bold text-red-600 dark:bg-red-500/10">{errors.cart}</div>}
       <div className="grid gap-6 lg:grid-cols-[1fr_380px]">

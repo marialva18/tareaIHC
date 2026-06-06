@@ -15,7 +15,7 @@ export function DeliveryForm({ form, setForm, errors }) {
           {errors.name && <p className="mt-1 text-sm font-semibold text-red-500">{errors.name}</p>}
         </div>
         <div>
-          <input className={`${inputClass} ${errors.phone ? errorClass : okClass}`} value={form.phone} onChange={(e) => update('phone', e.target.value)} placeholder="Celular de 9 dígitos" maxLength={9} />
+          <input className={`${inputClass} ${errors.phone ? errorClass : okClass}`} value={form.phone} onChange={(e) => update('phone', e.target.value.replace(/\D/g, '').slice(0, 9))} placeholder="Celular de 9 dígitos" maxLength={9} />
           {errors.phone && <p className="mt-1 text-sm font-semibold text-red-500">{errors.phone}</p>}
         </div>
       </div>
